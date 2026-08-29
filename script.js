@@ -1,25 +1,43 @@
-const menuBtn = document.getElementById("menuBtn");
-const navMenu = document.getElementById("navMenu");
+// ===============================
+// WEBSITE DESA SEBURING
+// ===============================
 
+document.addEventListener("DOMContentLoaded", function () {
 
-// MENU HP
+    console.log("Website Desa Seburing berhasil dimuat.");
 
-menuBtn.addEventListener("click", function () {
+    // Animasi sederhana ketika halaman digulir
+    const cards = document.querySelectorAll(
+        ".gallery-card, .about-image, .nature-image"
+    );
 
-    navMenu.classList.toggle("active");
+    const observer = new IntersectionObserver(
+        function (entries) {
 
-});
+            entries.forEach(function (entry) {
 
+                if (entry.isIntersecting) {
 
-// TUTUP MENU SETELAH LINK DIKLIK
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
 
-const navLinks = document.querySelectorAll("#navMenu a");
+                }
 
-navLinks.forEach(function(link) {
+            });
 
-    link.addEventListener("click", function() {
+        },
+        {
+            threshold: 0.15
+        }
+    );
 
-        navMenu.classList.remove("active");
+    cards.forEach(function (card) {
+
+        card.style.opacity = "0";
+        card.style.transform = "translateY(30px)";
+        card.style.transition = "0.7s ease";
+
+        observer.observe(card);
 
     });
 
